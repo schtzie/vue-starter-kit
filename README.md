@@ -10,9 +10,11 @@ Laravel 12 + Inertia + Vue starter kit provides the typical functionality found 
 
 Inside you will find all the functions that you would expect:
 
-- Authentication
+- Authentication using Laravel's built in authentication
     - Login
     - Registration
+    - Forgot Password
+    - Reset Password
 - RBAC (Role-Based Access Control) using Spatie's Permission
 - Auditing using Laravel Auditing
 - Schadcn Vue  + PrimeVue
