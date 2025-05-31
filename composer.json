@@ -1,8 +1,8 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "laravel/vue-starter-kit",
+    "name": "schtzie/vue-starter-kit",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
+    "description": "Schatzie's Vue Starter Kit for Laravel framework.",
     "keywords": [
         "laravel",
         "framework"
