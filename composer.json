@@ -5,7 +5,10 @@
     "description": "Schatzie's Vue Starter Kit for Laravel framework.",
     "keywords": [
         "laravel",
-        "framework"
+        "framework",
+        "vue",
+        "starter-kit",
+        "inertia"
     ],
     "license": "MIT",
     "require": {
