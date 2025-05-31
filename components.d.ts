@@ -13,5 +13,6 @@ declare module 'vue' {
     Checkbox: typeof import('primevue/checkbox')['default']
     InputText: typeof import('primevue/inputtext')['default']
     Password: typeof import('primevue/password')['default']
+    Tag: typeof import('primevue/tag')['default']
   }
 }

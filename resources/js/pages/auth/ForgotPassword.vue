@@ -1,12 +1,9 @@
 <script setup lang="ts">
 import InputError from '@/components/InputError.vue';
-import TextLink from '@/components/TextLink.vue';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
-import AuthLayout from '@/layouts/AuthLayout.vue';
-import { Head, useForm } from '@inertiajs/vue3';
-import { LoaderCircle } from 'lucide-vue-next';
+import GuestLayout from '@/layouts/GuestLayout.vue';
+import { Head, Link, useForm } from '@inertiajs/vue3';
 
 defineProps<{
     status?: string;
@@ -22,33 +19,55 @@ const submit = () => {
 </script>
 
 <template>
-    <AuthLayout title="Forgot password" description="Enter your email to receive a password reset link">
-        <Head title="Forgot password" />
+    <GuestLayout>
+        <Head title="Forgot Password" />
 
         <div v-if="status" class="mb-4 text-center text-sm font-medium text-green-600">
             {{ status }}
         </div>
 
-        <div class="space-y-6">
-            <form @submit.prevent="submit">
-                <div class="grid gap-2">
-                    <Label for="email">Email address</Label>
-                    <Input id="email" type="email" name="email" autocomplete="off" v-model="form.email" autofocus placeholder="email@example.com" />
-                    <InputError :message="form.errors.email" />
-                </div>
+        <div class="flex flex-col gap-6">
+            <Card>
+                <CardHeader class="text-center">
+                    <CardTitle class="text-xl"> Forgot Password </CardTitle>
+                    <CardDescription> Enter your email to receive a password reset link </CardDescription>
+                </CardHeader>
 
-                <div class="my-6 flex items-center justify-start">
-                    <Button class="w-full" :disabled="form.processing">
-                        <LoaderCircle v-if="form.processing" class="h-4 w-4 animate-spin" />
-                        Email password reset link
-                    </Button>
-                </div>
-            </form>
+                <CardContent>
+                    <form @submit.prevent="submit">
+                        <div class="grid gap-6">
+                            <div class="grid gap-2">
+                                <Label for="email">Email Address</Label>
 
-            <div class="space-x-1 text-center text-sm text-muted-foreground">
-                <span>Or, return to</span>
-                <TextLink :href="route('login')">log in</TextLink>
-            </div>
+                                <InputText
+                                    type="text"
+                                    class="w-full"
+                                    v-model="form.email"
+                                    placeholder="Email Address"
+                                    autofocus
+                                    :invalid="form.errors.email ? true : false"
+                                    autocomplete="email"
+                                />
+
+                                <InputError :message="form.errors.email" />
+                            </div>
+
+                            <Button
+                                class="btn btn-primary flex w-full grow justify-center"
+                                :label="form.processing ? 'Loading..' : 'Email password reset link'"
+                                type="submit"
+                                size="small"
+                                :loading="form.processing"
+                            />
+
+                            <div class="text-center text-sm">
+                                Or, return to
+                                <Link :href="route('login')" class="underline underline-offset-4"> Sign In </Link>
+                            </div>
+                        </div>
+                    </form>
+                </CardContent>
+            </Card>
         </div>
-    </AuthLayout>
+    </GuestLayout>
 </template>
