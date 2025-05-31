@@ -4,7 +4,7 @@
 
 ## Introduction
 
-Laravel 12 + Blade starter kit provides the typical functionality found in the Laravel Starter kits.
+Laravel 12 + Inertia + Vue starter kit provides the typical functionality found in the Laravel Starter kits.
 
 ## What is Inside?
 
