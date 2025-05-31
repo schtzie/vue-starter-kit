@@ -60,7 +60,9 @@ const submit = () => {
                             <div class="grid gap-2">
                                 <div class="flex items-center">
                                     <Label for="password">Password</Label>
-                                    <Link :href="route('password.request')" class="ml-auto text-sm underline-offset-4 hover:underline"> Forgot your password? </Link>
+                                    <Link :href="route('password.request')" class="ml-auto text-sm underline-offset-4 hover:underline" tabindex="-1">
+                                        Forgot your password?
+                                    </Link>
                                 </div>
 
                                 <Password
