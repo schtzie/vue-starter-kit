@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import InputError from '@/components/InputError.vue';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
-import AuthLayout from '@/layouts/AuthLayout.vue';
+import GuestLayout from '@/layouts/GuestLayout.vue';
 import { Head, useForm } from '@inertiajs/vue3';
-import { LoaderCircle } from 'lucide-vue-next';
 
 interface Props {
     token: string;
@@ -31,51 +29,96 @@ const submit = () => {
 </script>
 
 <template>
-    <AuthLayout title="Reset password" description="Please enter your new password below">
+    <GuestLayout>
         <Head title="Reset password" />
 
-        <form @submit.prevent="submit">
-            <div class="grid gap-6">
-                <div class="grid gap-2">
-                    <Label for="email">Email</Label>
-                    <Input id="email" type="email" name="email" autocomplete="email" v-model="form.email" class="mt-1 block w-full" readonly />
-                    <InputError :message="form.errors.email" class="mt-2" />
-                </div>
+        <div v-if="status" class="mb-4 text-center text-sm font-medium text-green-600">
+            {{ status }}
+        </div>
 
-                <div class="grid gap-2">
-                    <Label for="password">Password</Label>
-                    <Input
-                        id="password"
-                        type="password"
-                        name="password"
-                        autocomplete="new-password"
-                        v-model="form.password"
-                        class="mt-1 block w-full"
-                        autofocus
-                        placeholder="Password"
-                    />
-                    <InputError :message="form.errors.password" />
-                </div>
+        <div class="flex flex-col gap-6">
+            <Card>
+                <CardHeader class="text-center">
+                    <CardTitle class="text-xl"> Reset password </CardTitle>
+                    <CardDescription> Please enter your new password below </CardDescription>
+                </CardHeader>
 
-                <div class="grid gap-2">
-                    <Label for="password_confirmation"> Confirm Password </Label>
-                    <Input
-                        id="password_confirmation"
-                        type="password"
-                        name="password_confirmation"
-                        autocomplete="new-password"
-                        v-model="form.password_confirmation"
-                        class="mt-1 block w-full"
-                        placeholder="Confirm password"
-                    />
-                    <InputError :message="form.errors.password_confirmation" />
-                </div>
+                <CardContent>
+                    <form @submit.prevent="submit">
+                        <div class="grid gap-6">
+                            <div class="grid gap-2">
+                                <Label for="email">Email Address</Label>
 
-                <Button type="submit" class="mt-4 w-full" :disabled="form.processing">
-                    <LoaderCircle v-if="form.processing" class="h-4 w-4 animate-spin" />
-                    Reset password
-                </Button>
-            </div>
-        </form>
-    </AuthLayout>
+                                <InputText
+                                    type="text"
+                                    class="w-full"
+                                    v-model="form.email"
+                                    placeholder="Email Address"
+                                    autofocus
+                                    :invalid="form.errors.email ? true : false"
+                                    autocomplete="email"
+                                    :readonly="true"
+                                />
+
+                                <InputError :message="form.errors.email" />
+                            </div>
+
+                            <div class="grid gap-2">
+                                <Label for="password">Password</Label>
+
+                                <Password
+                                    size="small"
+                                    inputClass="p-password-input-sm-login p-password-input-width"
+                                    v-model="form.password"
+                                    :feedback="false"
+                                    :invalid="form.errors.password ? true : false"
+                                    toggleMask
+                                    placeholder="Password"
+                                />
+
+                                <InputError :message="form.errors.password" />
+                            </div>
+
+                            <div class="grid gap-2">
+                                <Label for="password_confirmation">Confirm Password</Label>
+
+                                <Password
+                                    size="small"
+                                    inputClass="p-password-input-sm-login p-password-input-width"
+                                    v-model="form.password_confirmation"
+                                    :feedback="false"
+                                    :invalid="form.errors.password ? true : false"
+                                    toggleMask
+                                    placeholder="Confirm Password"
+                                />
+
+                                <InputError :message="form.errors.password_confirmation" />
+                            </div>
+
+                            <Button
+                                class="btn btn-primary flex w-full grow justify-center"
+                                :label="form.processing ? 'Loading..' : 'Reset password'"
+                                type="submit"
+                                size="small"
+                                :loading="form.processing"
+                            />
+                        </div>
+                    </form>
+                </CardContent>
+            </Card>
+        </div>
+    </GuestLayout>
 </template>
+
+<style>
+.p-password-input-sm-login {
+    font-size: 0.8125rem !important;
+    padding: 0.4375rem 0.65625rem;
+}
+
+.p-password,
+.p-password-input-width {
+    width: 100% !important;
+    height: 38px !important;
+}
+</style>

@@ -58,7 +58,10 @@ const submit = () => {
                             </div>
 
                             <div class="grid gap-2">
-                                <Label for="password">Password</Label>
+                                <div class="flex items-center">
+                                    <Label for="password">Password</Label>
+                                    <Link :href="route('password.request')" class="ml-auto text-sm underline-offset-4 hover:underline"> Forgot your password? </Link>
+                                </div>
 
                                 <Password
                                     size="small"
@@ -91,7 +94,7 @@ const submit = () => {
 
                             <div class="text-center text-sm">
                                 Don't have an account?
-                                <Link :href="route('register')" class="underline underline-offset-4"> Sign up </Link>
+                                <Link :href="route('register')" class="underline underline-offset-4"> Sign Up </Link>
                             </div>
                         </div>
                     </form>
