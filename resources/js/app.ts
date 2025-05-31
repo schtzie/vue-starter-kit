@@ -1,5 +1,19 @@
 import '../css/app.css';
 
+/**
+ * PrimeVue Icons
+ */
+import 'primeicons/primeicons.css';
+
+/**
+ * PrimeVue Theme
+ */
+import Noir from '@/presets/noir';
+import PrimeVue from 'primevue/config';
+import ToastService from 'primevue/toastservice';
+import FocusTrap from 'primevue/focustrap';
+import Tooltip from 'primevue/tooltip';
+
 import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import type { DefineComponent } from 'vue';
@@ -29,6 +43,17 @@ createInertiaApp({
         createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue)
+            .use(PrimeVue, {
+                theme: {
+                    preset: Noir,
+                    options: {
+                        darkModeSelector: '.dark',
+                    },
+                },
+            })
+            .use(ToastService)
+            .directive('focustrap', FocusTrap)
+            .directive('tooltip', Tooltip)
             .mount(el);
     },
     progress: {

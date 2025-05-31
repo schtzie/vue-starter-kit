@@ -20,7 +20,6 @@ export interface NavItem {
 
 export interface SharedData extends PageProps {
     name: string;
-    quote: { message: string; author: string };
     auth: Auth;
     ziggy: Config & { location: string };
     sidebarOpen: boolean;
@@ -29,6 +28,7 @@ export interface SharedData extends PageProps {
 export interface User {
     id: number;
     name: string;
+    username: string;
     email: string;
     avatar?: string;
     email_verified_at: string | null;
