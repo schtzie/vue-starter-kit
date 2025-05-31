@@ -15,6 +15,7 @@ Inside you will find all the functions that you would expect:
     - Registration
 - RBAC (Role-Based Access Control) using Spatie's Permission
 - Auditing using Laravel Auditing
+- Schadcn Vue  + PrimeVue
 
 ## How to use it?
 
